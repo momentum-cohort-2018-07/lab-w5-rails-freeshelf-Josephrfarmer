@@ -6,13 +6,22 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
   end
-  #make a new album 
+  #make a new book  
   def create 
     @book = Book.create(title: params[:title],
                         author: params[:author],
                         description: params[:description],
                         URL: params[:URL]) 
-    redirect_to books_path
+
+      respond_to do |format|
+        if @book.save
+          format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
+      end
+      
+    
   end 
 
   def show 
