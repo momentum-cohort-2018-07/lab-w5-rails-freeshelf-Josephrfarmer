@@ -1,0 +1,32 @@
+<h1>Create an account</h1>
+
+<%= form_with(url:users_path, local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited user from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :username %><br>
+    <%= form.text_field :username %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :password %><br>
+    <%= password_field_tag(:password, "", placeholder: "Password") %> 
+  </div>
+
+  <div class="actions">
+    <%= form.submit %><br>
+    <%= link_to 'Back', books_path %>
+  </div>
+<% end %>
+
